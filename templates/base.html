@@ -38,14 +38,14 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
     
-        <a href="http://127.0.0.1:8000/index2/?proj={{proj}}" class="nav-link">Home</a>
+        <a href="{% url 'index-2' %}?proj={{proj}}" class="nav-link">Home</a>
         
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         {% if proj == 0 %}
         <a href="/" class="nav-link">Lista de Documentos</a>
         {% else %}
-        <a href="http://127.0.0.1:8000/typeDocuments/?proj={{proj}}" class="nav-link">Lista de Documentos</a>
+        <a href="{% url 'documment-type-list' %}?proj={{proj}}" class="nav-link">Lista de Documentos</a>
         {% endif %}
       </li>
   
@@ -53,7 +53,7 @@
         {% if proj == 0 %}
         <a href="/" class="nav-link">Cotations</a>
         {% else %}
-        <a href="http://127.0.0.1:8000/cotation/?proj={{proj}}" class="nav-link">Cotations</a>
+        <a href="{% url 'cotation-list' %}?proj={{proj}}" class="nav-link">Cotations</a>
         {% endif %}
       </li>
       <li class="nav-item d-none d-sm-inline-block">
@@ -833,6 +833,8 @@
 <script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
 <script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
 <script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <!-- AdminLTE for demo purposes -->

@@ -332,10 +332,21 @@ def UploadTable(request):
     Cotations = Cotations.filter(proj_name__id=proj)
     Cotations = Cotations.filter(subject_name__id=sub)
 
+    Employees = Employee.objects.all()
+    #----------------------
+    colab = request.user
 
-    #CODE.trata_edit_cota(GET, proj, sub)
+    colaborador = ''
+    photo_colab = ''
 
-    return render(request, 'documentation/upload-table.html', {'Uploads':Uploads, 'proj':proj, 'sub':sub})
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+                
+    #----------------------
+
+    return render(request, 'documentation/upload-table.html', {'Uploads':Uploads, 'colaborador':colaborador, 'photo_colab':photo_colab, 'proj':proj, 'sub':sub})
 
 
 
@@ -377,7 +388,21 @@ def download_df(request):
 
     os.system("F:\Visual_Studio\Project_Management\media\DF_COTATION.xlsx")
 
-    return render(request, 'documentation/upload-table.html', {'proj':proj, 'sub':sub, 'Cotations':Cotations})
+    Employees = Employee.objects.all()
+    #----------------------
+    colab = request.user
+
+    colaborador = ''
+    photo_colab = ''
+
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+                
+    #----------------------
+
+    return render(request, 'documentation/upload-table.html', {'proj':proj, 'sub':sub, 'Cotations':Cotations, 'colaborador':colaborador, 'photo_colab':photo_colab})
 
 
 
