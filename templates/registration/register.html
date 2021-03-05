@@ -1,7 +1,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
+<br>
 <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
 
@@ -16,6 +16,8 @@
                     <input type="hidden" name="next" value="{{next}}">
 
                     {{form|crispy}}
+
+                    <br>
                     <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                     
                 </form>

@@ -386,7 +386,7 @@ def download_df(request):
     df = pd.read_excel('media/DF_COTATION.xlsx', 'cota')
     print(df)
 
-    os.system("F:\Visual_Studio\Project_Management\media\DF_COTATION.xlsx")
+    os.system("F:\Visual_Studio\Project_Development\media\DF_COTATION.xlsx")
 
     Employees = Employee.objects.all()
     #----------------------
