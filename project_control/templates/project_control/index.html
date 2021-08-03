@@ -1,0 +1,88 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Message -->
+    <!-- <ul class="messagelist">
+        <li class="success">O cliente “<a href="/admin/task/cliente/2/change/">BARBARA CRISTINA MARTINS DA SILVA</a>” foi alterado com sucesso.</li>
+    </ul> -->
+
+<!-- Content -->
+
+<div class="row">
+    <h2>Projetos em Andamento</h2>
+        <div class="tables">
+            <table id="result_list" class="table table-striped table-bordered dt-responsive nowrap no-footer">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col" class="action-checkbox-column">
+                            <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                            <div class="clear"></div>
+                        </th> -->
+                        <th scope="col" class="sortable column-name">
+                            <div class="text">&nbsp;NOME DO CLIENTE </div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col" class="sortable column-cpf">
+                            <div class="text"> CPF </div>
+                            <div class="clear"></div>
+                        </th>
+    
+                        <th scope="col" class="sortable column-policy">
+                            <div class="text"> NÚMERO DA APOLICE </div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col" class="sortable column-amount_paid">
+                            <div class="text"> VALOR PAGO </div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col" class="sortable column-date">
+                            <div class="text"> Date </div>
+                            <div class="clear"></div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <th>AAAAAA</th>
+                        <td>BBBBBB</td>
+                        <td>CCCCC</td>
+                        <td><b>DDDDD</b></td>
+                        <td>EEEEE</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="content-box">
+
+                <div class="div-box" id="box1">
+                    <i class="fa fa-facebook"></i>
+                    <ul>
+                        <sctrong><h3 id="h3-color"><a href="">Controle de Projetos</a></h3>
+                    </ul>
+                </div>
+     
+                <div class="div-box" id="box2">
+                    <i class="fa fa-facebook"></i>
+                    <ul>
+                        <sctrong><h3 id="h3-color"><a href="">Novos Projetos</a></h3>
+                    </ul>
+                </div>
+
+                <div class="div-box" id="box3">
+                    <i class="fa fa-facebook"></i>
+                    <ul>
+                        <sctrong><h3 id="h3-color"><a href="">Outras Atividades</a></h3>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>   
+</div>
+    
+
+
+{% endblock %}
