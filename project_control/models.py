@@ -71,7 +71,7 @@ class DocumentModel(models.Model): #Modelo de Documento
     documment_name = models.CharField(max_length=255, verbose_name='NOME DOCUMENTO')
     doc_code = models.ForeignKey(DocType, on_delete=models.CASCADE, verbose_name='CÓDIGO DOC')
     format_doc = models.ForeignKey(Pageformat, on_delete=models.CASCADE, verbose_name='FORMATO DO DOCUMENTO')
-    doc_type_page = models.ForeignKey(PageType, on_delete=models.CASCADE, verbose_name='TIPO PÁGINA')
+    doc_type_page = models.ForeignKey(PageType, on_delete=models.CASCADE, verbose_name='PADRÃO DE FOLHA')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
