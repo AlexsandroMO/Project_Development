@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
   <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
   <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
 
 </head>
 
@@ -38,11 +39,83 @@
       </div>
     </div>
 
-      {% block content %}
+    
+{% if stauts_body != 'page-home' %}
 
-      {% endblock %}
+<div class="breadcrumbs">
+  <a href="/">Home</a>
+  &rsaquo; <a href="/admin/project_control/">Lista de Documentos</a>
+</div>
+
+<div class="main shifted" id="main">
+
+  <button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Toggle navigation"></button>
+
+  <!-- NAV-->
+  <nav class="sticky" id="nav-sidebar">
+    <div class="app-auth module">
+      <table>
+        <caption>
+          <a href="/admin/auth/" class="section" title="Projects Currently in Progress">PROJETOS EM ANDAMENTO</a>
+        </caption>
+
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'lista-proj' %}">Lista de Projetos</a></th>
+          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'lista-model-docs' %}">Modelo de Documentos</a></th>
+          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-user">
+          <th scope="row"><a href="/admin/auth/user/">Status do Projeto</a></th>
+          <td><a href="/admin/auth/user/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/user/" class="changelink">Change</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="app-project_control module">
+      <table>
+        <caption>
+          <a href="/admin/project_control/" class="section"
+            title="Models in the Project_Control application">CONFIGURAÇÃO DE PROJETOS</a>
+        </caption>
+
+        <tr class="model-action">
+          <th scope="row"><a href="/admin/project_control/project/">Novo Projeto</a></th>
+          <td><a href="/admin/project_control/project/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/project/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/doctype/">Tipos de Documentos</a></th>
+          <td><a href="/admin/project_control/doctype/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/doctype/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/subject/">Disciplinas</a></th>
+          <td><a href="/admin/project_control/subject/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/subject/" class="changelink">Change</a></td>
+        </tr>
+
+      </table>
+    </div>
+  </nav>
+
+{% endif %}
 
 
+{% block content %}
+
+{% endblock %}
+
+</div>
 </body>
 
 <!-- Optional JavaScript -->
@@ -57,6 +130,16 @@
 
 <script src="/static/admin/js/nav_sidebar.js" defer></script>
 <script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" async></script>
+<script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]"></script>
 
 <script src="{% static 'js/scripts.js' %}"></script>
 <script src="{% static 'js/script-coin.js' %}"></script>

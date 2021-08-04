@@ -7,7 +7,7 @@
 
   <!-- Content -->
   <div id="content" class="">
-    <h1>Lista de Projetos</h1>
+    <h1>Lista de Documentos</h1>
     <div id="content-main">
 
       <ul class="object-tools">
@@ -20,20 +20,17 @@
 
       <div class="module" id="changelist">
         <div class="changelist-form-container">
-          <form id="changelist-form" method="post" novalidate><input type="hidden" name="csrfmiddlewaretoken"
-              value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">
+          <form id="changelist-form" method="post" novalidate>
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{token}}">
             <div class="actions">
-              <label>Action: <select name="action" required>
+              <label>Action:
                 <select name="action" required>
-                  <option value="0" selected>---------</option>
-                  {% for proj in Projects %}
-                  <option value="{{proj.id}}">{{proj.project_name}}</option>
-                  {% endfor %}
-                </select>
                   <option value="" selected>---------</option>
                   <option value="delete_selected">Delete selected document models</option>
                 </select></label><input type="hidden" name="select_across" value="0" class="select-across">
-              <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+                
+              </label><input type="hidden" name="select_across" value="0" class="select-across">
+              <button type="submit" class="button" title="Run the selected action" name="index" value="{{proj.id}}">Go</button>
               <span class="action-counter" data-actions-icnt="{{docs_count}}">{{docs_count}} of 5 selected</span>
             </div>
             <div class="results">
@@ -45,36 +42,36 @@
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-documment_name">
-                      <div class="text"><a href="?o=1">NOME DO PROJETO</a></div>
+                      <div class="text"><a href="?o=1">NOME DO DOCUMENTO</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_code">
-                      <div class="text"><a href="?o=2">EMPRESA</a></div>
+                      <div class="text"><a href="?o=2">CÓDIGO DO DOCUMENTO</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-format_doc">
-                      <div class="text"><a href="?o=3">CÓDIGO</a></div>
+                      <div class="text"><a href="?o=3">FORMATO DO DOCUMENTO</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">COMENTÁRIOS</a></div>
+                      <div class="text"><a href="?o=4">PADRÃO DE FOLHA</a></div>
                       <div class="clear"></div>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% csrf_token %}
-                  {% for proj in Projects %}
+                  {% for doc in DocumentModels %}
                   <tr>
                     <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="6"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
-                    <th class="field-documment_name nowrap"><a href="/admin/project_control/project/{{proj.id}}/change/">{{proj.project_name}}</a></th>
-                    <td class="field-doc_code nowrap">{{proj.company}}</td>
-                    <td class="field-format_doc nowrap" >{{proj.code}}</td>
-                    <td class="field-doc_type_page nowrap">{{proj.comments}}</td>
+                    <th class="field-documment_name nowrap"><a href="/admin/project_control/documentmodel/{{doc.id}}/change/">{{doc.documment_name}}</a></th>
+                    <td class="field-doc_code nowrap">{{doc.doc_code}}</td>
+                    <td class="field-format_doc nowrap" >{{doc.format_doc}}</td>
+                    <td class="field-doc_type_page nowrap">{{doc.doc_type_page}}</td>
                   </tr>
                   {% endfor %}
-
+                  
                 </tbody>
               </table>
             </div>

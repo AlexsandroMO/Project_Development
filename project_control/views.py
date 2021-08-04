@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Employee, Project, DocumentModel
-#from .forms import ProjectForm, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
+from .forms import ProjectForm #, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
 from django.contrib import messages
 
 def home(request):
@@ -12,15 +12,18 @@ def home(request):
     return render(request,'project_control/index.html', {'stauts_body': stauts_body})
 
 
+
 @login_required
-def listaDocs(request):
+def listaProj(request):
     stauts_body = ''
+
+    GET = dict(request.POST)
+    print(len(GET))
 
     Projects = Project.objects.all().order_by('-project_name')
     Employees = Employee.objects.all()
-    DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
 
-    #proj = 0
+    docs_count = len(Projects)
 
     colab = request.user
     colaborador = ''
@@ -31,4 +34,146 @@ def listaDocs(request):
             colaborador = a.emp_name
             photo_colab = a.photo
 
-    return render(request,'project_control/lista-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'colaborador':colaborador, 'photo_colab':photo_colab})
+    return render(request,'project_control/lista-de-projetos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'docs_count':docs_count,'colaborador':colaborador, 'photo_colab':photo_colab})
+
+
+@login_required
+def newProj(request):
+
+    Projects = Project.objects.all()
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.save()
+            return redirect('/Lista_Proj')
+    else:
+        form = ProjectForm()
+        return render(request, 'project_control/novo-projeto.html', {'form': form})
+
+
+@login_required
+def editProj(request, id):
+    stauts_body = ''
+
+    Projects = get_object_or_404(Project, pk=id)
+    form = ProjectForm(instance=Projects)
+
+    print(form)
+
+    if(request.method == 'POST'):
+        form = ProjectForm(request.POST, instance=Projects)
+
+        if(form.is_valid()):
+            #if Projects.policy == '0':
+                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
+            Projects.save()
+            return redirect('/Lista_Proj')
+        else:
+            return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+    else:
+        return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+
+@login_required
+def preDelProj(request):
+    stauts_body = ''
+
+    GET = dict(request.POST)
+    print(len(GET))
+    print(GET)
+    print('>>>>>>>>>>>', GET['_selected_action'])
+    print('--------', GET['csrfmiddlewaretoken'])
+    
+    count_del_items = len(GET['_selected_action'])
+    items = [int(i) for i in GET['_selected_action']]
+    print(items)
+
+    Projects = Project.objects.all().order_by('-project_name')
+    
+    return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'Projects':Projects, 'count_del_items':count_del_items, 'items':items})
+
+
+def delProj(request, id):
+    Projects = get_object_or_404(Project, pk=id)
+    Projects.delete()
+
+    messages.info(request, 'Item deletado com sucesso!')
+
+    return redirect('/Lista_Proj')
+
+
+
+@login_required
+def listaModelDocs(request):
+    stauts_body = ''
+
+    Projects = Project.objects.all().order_by('-project_name')
+    Employees = Employee.objects.all()
+    DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
+
+    docs_count = len(DocumentModels)
+
+    colab = request.user
+    colaborador = ''
+    photo_colab = ''
+
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+
+    return render(request,'project_control/modelos-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'docs_count':docs_count, 'colaborador':colaborador, 'photo_colab':photo_colab})
+
+
+
+
+
+
+'''
+
+@login_required
+def listaDocs(request):
+    stauts_body = ''
+
+    GET = dict(request.POST)
+    print(len(GET))
+
+    Projects = Project.objects.all().order_by('-project_name')
+    Employees = Employee.objects.all()
+    DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
+
+    token = 0
+    proj = 0
+
+    if len(GET) > 0:
+        print('ok')
+        token = 0
+        proj = 0
+        DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
+
+    else:
+        token = 'x' #GET['csrfmiddlewaretoken']
+        proj = 0 #GET['action']
+        DocumentModels = DocumentModel.objects.filter(id=proj)
+
+    docs_count = len(DocumentModels)
+
+    colab = request.user
+    colaborador = ''
+    photo_colab = ''
+
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+
+    return render(request,'project_control/lista-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'proj':proj, 'docs_count':docs_count, 'token':token, 'colaborador':colaborador, 'photo_colab':photo_colab})
+
+
+'''
+
+

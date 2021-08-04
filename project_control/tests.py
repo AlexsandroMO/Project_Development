@@ -152,3 +152,79 @@ from django.test import TestCase
 </body>
 </html>
 '''
+
+
+
+
+
+
+'''
+
+
+<div class="breadcrumbs">
+  <a href="/">Home</a>
+  &rsaquo; <a href="/admin/project_control/">Lista de Documentos</a>
+</div>
+
+<div class="main shifted" id="main">
+
+  <button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Toggle navigation"></button>
+
+  <!-- NAV-->
+  <nav class="sticky" id="nav-sidebar">
+    <div class="app-auth module">
+      <table>
+        <caption>
+          <a href="/admin/auth/" class="section" title="Projects Currently in Progress">PROJETOS EM ANDAMENTO</a>
+        </caption>
+
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'lista-proj' %}">Lista de Projetos</a></th>
+          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'lista-model-docs' %}">Modelo de Documentos</a></th>
+          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-user">
+          <th scope="row"><a href="/admin/auth/user/">Status do Projeto</a></th>
+          <td><a href="/admin/auth/user/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/auth/user/" class="changelink">Change</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="app-project_control module">
+      <table>
+        <caption>
+          <a href="/admin/project_control/" class="section"
+            title="Models in the Project_Control application">CONFIGURAÇÃO DE PROJETOS</a>
+        </caption>
+
+        <tr class="model-action">
+          <th scope="row"><a href="/admin/project_control/project/">Novo Projeto</a></th>
+          <td><a href="/admin/project_control/project/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/project/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/doctype/">Tipos de Documentos</a></th>
+          <td><a href="/admin/project_control/doctype/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/doctype/" class="changelink">Change</a></td>
+        </tr>
+
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/subject/">Disciplinas</a></th>
+          <td><a href="/admin/project_control/subject/add/" class="addlink">Add</a></td>
+          <td><a href="/admin/project_control/subject/" class="changelink">Change</a></td>
+        </tr>
+
+      </table>
+    </div>
+  </nav>
+
+'''

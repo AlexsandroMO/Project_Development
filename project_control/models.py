@@ -17,8 +17,8 @@ class Project(models.Model): #Títulos de projeto
 
     project_name = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
-    comments = models.TextField()
     code = models.CharField(max_length=255)
+    comments = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
