@@ -9,7 +9,8 @@ urlpatterns = [
     path('New_Proj', newProj, name='new-proj'),
     path('Edit_Proj/<int:id>', editProj, name='edit-proj'),
     path('Pre_Del_Proj', preDelProj, name='pre-del-proj'),
-    path('Del_Proj/<int:id>', delProj, name='del-proj'),
+    #path('Del_Proj/<int:id>', delProj, name='del-proj'),
+    path('Del_Proj', delProj, name='del-proj'),
 
     path('Lista_Model_Docs', listaModelDocs, name='lista-model-docs'),
    # path('Lista_Docs', listaDocs, name='lista-docs'),

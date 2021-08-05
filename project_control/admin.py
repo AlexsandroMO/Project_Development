@@ -7,7 +7,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     fields = ('project_name','company','code','comments')
-    list_display = ('project_name','company','code','comments','created_at','update_at')
+    list_display = ('id','project_name','company','code','comments','created_at','update_at')
     
 
 class SubjectAdmin(admin.ModelAdmin):

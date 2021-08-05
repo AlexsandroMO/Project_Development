@@ -82,24 +82,30 @@ def editProj(request, id):
 def preDelProj(request):
     stauts_body = ''
 
-    GET = dict(request.POST)
-    print(len(GET))
-    print(GET)
-    print('>>>>>>>>>>>', GET['_selected_action'])
-    print('--------', GET['csrfmiddlewaretoken'])
+    POST = dict(request.POST)
     
-    count_del_items = len(GET['_selected_action'])
-    items = [int(i) for i in GET['_selected_action']]
-    print(items)
+    count_del_items = len(POST['_selected_action'])
+    items = [int(i) for i in POST['_selected_action']]
 
     Projects = Project.objects.all().order_by('-project_name')
+
+    ProjRead = []
+    for a in items:
+        print(a)
+        for i in Projects:
+            if i.id == a:
+                ProjRead.append([i.id, i.project_name])
     
-    return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'Projects':Projects, 'count_del_items':count_del_items, 'items':items})
+    return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'ProjRead':ProjRead, 'count_del_items':count_del_items, 'items':items})
 
 
 def delProj(request, id):
+#def delProj(request):
     Projects = get_object_or_404(Project, pk=id)
     Projects.delete()
+
+    POST = dict(request.POST)
+    print('---',POST)
 
     messages.info(request, 'Item deletado com sucesso!')
 
