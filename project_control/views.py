@@ -83,24 +83,30 @@ def preDelProj(request):
     stauts_body = ''
 
     POST = dict(request.POST)
+    print(POST)
     
     count_del_items = len(POST['_selected_action'])
     items = [int(i) for i in POST['_selected_action']]
+    token = POST['csrfmiddlewaretoken']
 
-    Projects = Project.objects.all().order_by('-project_name')
+    if len(items) > 1:
+        return redirect('/admin/project_control/project/')
 
-    ProjRead = []
-    for a in items:
-        print(a)
-        for i in Projects:
-            if i.id == a:
-                ProjRead.append([i.id, i.project_name])
-    
-    return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'ProjRead':ProjRead, 'count_del_items':count_del_items, 'items':items})
+    else:
+        Projects = Project.objects.all()
+        ProjRead = []
+        for a in items:
+            print(a)
+            for i in Projects:
+                if i.id == a:
+                    ProjRead.append([i.id, i.project_name])
+            
+        print(ProjRead)
+
+        return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'ProjRead':ProjRead, 'count_del_items':count_del_items, 'items':items, 'token':token})
 
 
 def delProj(request, id):
-#def delProj(request):
     Projects = get_object_or_404(Project, pk=id)
     Projects.delete()
 
@@ -182,4 +188,49 @@ def listaDocs(request):
 
 '''
 
+
+'''
+
+
+@login_required
+def selectProjAction(request):
+
+    POST = dict(request.POST)
+    print(POST)
+    
+    count_del_items = len(POST['_selected_action'])
+    items = [int(i) for i in POST['_selected_action']]
+    token = POST['csrfmiddlewaretoken']
+
+    if len(items) > 1:
+        return redirect('/admin/project_control/project/')
+
+    else:
+        if POST['action'] == 'delete_selected':
+            Projects = Project.objects.all()
+            ProjRead = []
+            for a in items:
+                print(a)
+                for i in Projects:
+                    if i.id == a:
+                        ProjRead.append([i.id, i.project_name])
+                
+            print(ProjRead)
+
+            return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'ProjRead':ProjRead, 'count_del_items':count_del_items, 'items':items, 'token':token})
+        
+        elif POST['action'] == 'edite_selected':
+            Projects = Project.objects.all()
+            ProjRead = []
+            for a in items:
+                print(a)
+                for i in Projects:
+                    if i.id == a:
+                        ProjRead.append([i.id, i.project_name])
+                
+            print(ProjRead)
+
+            return redirect('/Edit_Proj/ProjRead.0.0')
+
+'''
 

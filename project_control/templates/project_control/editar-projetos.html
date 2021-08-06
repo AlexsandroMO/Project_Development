@@ -8,14 +8,6 @@
 <!-- Content -->
 <div id="content" class="colM">
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     <h1>Change project</h1>
     <h2>{{Projects.project_name}}</h2>
     <div id="content-main">
@@ -63,7 +55,7 @@
 <div class="submit-row">
 
     <input type="submit" value="Save" class="default" name="_save">
-    <p class="deletelink-box"><a href="del-proj/{{Projects.id}}" class="deletelink">Delete</a></p>
+    <p class="deletelink-box"><a href="{% url 'lista-proj' %}" class="deletelink">Back</a></p>
 
 </div>
 </div>

@@ -8,12 +8,12 @@ urlpatterns = [
     path('Lista_Proj', listaProj, name='lista-proj'),
     path('New_Proj', newProj, name='new-proj'),
     path('Edit_Proj/<int:id>', editProj, name='edit-proj'),
+    #path('select_Proj_Action', selectProjAction, name='select-proj-action'),
     path('Pre_Del_Proj', preDelProj, name='pre-del-proj'),
-    #path('Del_Proj/<int:id>', delProj, name='del-proj'),
-    path('Del_Proj', delProj, name='del-proj'),
-
+    path('Del_Proj/<int:id>', delProj, name='del-proj'),
     path('Lista_Model_Docs', listaModelDocs, name='lista-model-docs'),
    # path('Lista_Docs', listaDocs, name='lista-docs'),
+
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

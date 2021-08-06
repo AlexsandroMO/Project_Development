@@ -28,14 +28,13 @@
 
     <div class="module" id="changelist">
       <div class="changelist-form-container">
-        <!-- <form id="changelist-form" method="get" novalidate> -->
-          <form action="{% url 'pre-del-proj' %}" method="POST">
+         <form action="{% url 'pre-del-proj' %}" method="POST">
           <!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{token}}"> -->
           <div class="actions">
             <label>Action:
               <select name="action" required>
                 <option value="" selected>---------</option>
-                <option value="delete_selected">Delete selected document models</option>
+                <option value="edite_selected">Edite or Delete selected item</option>
               </select>
             </label>
               <input type="hidden" name="select_across" value="0" class="select-across">
