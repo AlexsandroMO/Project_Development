@@ -180,9 +180,6 @@ def delDocMode(request, id):
 
 
 
-
-
-
 '''
 
 @login_required
