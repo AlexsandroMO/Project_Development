@@ -12,7 +12,6 @@ def home(request):
     return render(request,'project_control/index.html', {'stauts_body': stauts_body})
 
 
-
 @login_required
 def listaProj(request):
     stauts_body = ''
@@ -55,30 +54,6 @@ def newProj(request):
 
 
 @login_required
-def editProj(request, id):
-    stauts_body = ''
-
-    Projects = get_object_or_404(Project, pk=id)
-    form = ProjectForm(instance=Projects)
-
-    print(form)
-
-    if(request.method == 'POST'):
-        form = ProjectForm(request.POST, instance=Projects)
-
-        if(form.is_valid()):
-            #if Projects.policy == '0':
-                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
-            Projects.save()
-            return redirect('/Lista_Proj')
-        else:
-            return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
-
-    else:
-        return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
-
-
-@login_required
 def preDelProj(request):
     stauts_body = ''
 
@@ -106,6 +81,30 @@ def preDelProj(request):
         return render(request,'project_control/pre-deleta-projeto.html', {'stauts_body':stauts_body, 'ProjRead':ProjRead, 'count_del_items':count_del_items, 'items':items, 'token':token})
 
 
+@login_required
+def editProj(request, id):
+    stauts_body = ''
+
+    Projects = get_object_or_404(Project, pk=id)
+    form = ProjectForm(instance=Projects)
+
+    print(form)
+
+    if(request.method == 'POST'):
+        form = ProjectForm(request.POST, instance=Projects)
+
+        if(form.is_valid()):
+            #if Projects.policy == '0':
+                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
+            Projects.save()
+            return redirect('/Lista_Proj')
+        else:
+            return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+    else:
+        return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+
 def delProj(request, id):
     Projects = get_object_or_404(Project, pk=id)
     Projects.delete()
@@ -118,7 +117,7 @@ def delProj(request, id):
     return redirect('/Lista_Proj')
 
 
-
+#------ Documents Model
 @login_required
 def listaModelDocs(request):
     stauts_body = ''
@@ -139,6 +138,45 @@ def listaModelDocs(request):
             photo_colab = a.photo
 
     return render(request,'project_control/modelos-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'docs_count':docs_count, 'colaborador':colaborador, 'photo_colab':photo_colab})
+
+
+@login_required
+def editDocMode(request, id):
+    stauts_body = ''
+
+    Projects = get_object_or_404(Project, pk=id)
+    form = ProjectForm(instance=Projects)
+
+    print(form)
+
+    if(request.method == 'POST'):
+        form = ProjectForm(request.POST, instance=Projects)
+
+        if(form.is_valid()):
+            #if Projects.policy == '0':
+                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
+            Projects.save()
+            return redirect('/Lista_Proj')
+        else:
+            return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+    else:
+        return render(request,'project_control/editar-projetos.html', {'form':form, 'Projects':Projects})
+
+
+def delDocMode(request, id):
+    Projects = get_object_or_404(Project, pk=id)
+    Projects.delete()
+
+    POST = dict(request.POST)
+    print('---',POST)
+
+    messages.info(request, 'Item deletado com sucesso!')
+
+    return redirect('/Lista_Proj')
+
+
+
 
 
 
