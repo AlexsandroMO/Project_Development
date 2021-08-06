@@ -22,20 +22,17 @@
         <div class="changelist-form-container">
           <form id="changelist-form" method="post" novalidate><input type="hidden" name="csrfmiddlewaretoken"
               value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">
-            <div class="actions">
-              <label>Action: <select name="action" required>
-                <select name="action" required>
-                  <option value="0" selected>---------</option>
-                  {% for proj in Projects %}
-                  <option value="{{proj.id}}">{{proj.project_name}}</option>
-                  {% endfor %}
-                </select>
-                  <option value="" selected>---------</option>
-                  <option value="delete_selected">Delete selected document models</option>
-                </select></label><input type="hidden" name="select_across" value="0" class="select-across">
-              <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
-              <span class="action-counter" data-actions-icnt="{{docs_count}}">{{docs_count}} of 5 selected</span>
-            </div>
+              <div class="actions">
+                <label>Action:
+                  <select name="action" required>
+                    <option value="" selected>---------</option>
+                    <option value="edite_selected">Edite or Delete selected item</option>
+                  </select>
+                </label>
+                  <input type="hidden" name="select_across" value="0" class="select-across">
+                <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+                <span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>
+              </div>
             <div class="results">
               <table id="result_list">
                 <thead>
@@ -44,34 +41,50 @@
                       <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
                       <div class="clear"></div>
                     </th>
+
+                    <th scope="col" class="sortable column-format_doc">
+                      <div class="text"><a href="?o=3">NOME BASE DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">NOME DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">NÚMERO DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_code">
+                      <div class="text"><a href="?o=2">DISCIPLINA</a></div>
+                      <div class="clear"></div>
+                    </th>
                     <th scope="col" class="sortable column-documment_name">
                       <div class="text"><a href="?o=1">NOME DO PROJETO</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="sortable column-doc_code">
-                      <div class="text"><a href="?o=2">EMPRESA</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-format_doc">
-                      <div class="text"><a href="?o=3">CÓDIGO</a></div>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">TIPO DE FOLHA</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">COMENTÁRIOS</a></div>
+                      <div class="text"><a href="?o=4">FORMATO</a></div>
                       <div class="clear"></div>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% csrf_token %}
-                  {% for proj in Projects %}
+                  {% for doc in LdProjs %}
                   <tr>
                     <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="6"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
-                    <th class="field-documment_name nowrap"><a href="/admin/project_control/project/{{proj.id}}/change/">{{proj.project_name}}</a></th>
-                    <td class="field-doc_code nowrap">{{proj.company}}</td>
-                    <td class="field-format_doc nowrap" >{{proj.code}}</td>
-                    <td class="field-doc_type_page nowrap">{{proj.comments}}</td>
+                    <td class="field-doc_name nowrap"><a href="/admin/project_control/project/{{proj.id}}/change/">{{doc.doc_name_pattern}}</td>
+                    <td class="field-format_doc nowrap" >{{doc.doc_name}}</td>
+                    <td class="field-doc_number nowrap">{{doc.doc_number}}</td>
+                    <td class="field-subject_name nowrap">{{doc.subject_name}}</td>
+                    <th class="field-proj_name nowrap">{{doc.proj_name}}</th>
+                    <td class="field-page_typenowrap">{{doc.page_type}}</td>
+                    <td class="field-format_docnowrap">{{doc.format_doc}} </td>
                   </tr>
                   {% endfor %}
 

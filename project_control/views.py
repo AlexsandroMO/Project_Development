@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from .models import Employee, Project, DocumentModel
-from .forms import ProjectForm #, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
+from .models import Employee, Project, DocumentModel, LdProj
+from .forms import ProjectForm, LdProjForm #, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
 from django.contrib import messages
 
 def home(request):
@@ -12,6 +12,7 @@ def home(request):
     return render(request,'project_control/index.html', {'stauts_body': stauts_body})
 
 
+#--------------------------------------------- Projects List
 @login_required
 def listaProj(request):
     stauts_body = ''
@@ -117,7 +118,7 @@ def delProj(request, id):
     return redirect('/Lista_Proj')
 
 
-#------ Documents Model
+#--------------------------------------------- Documents Model
 @login_required
 def listaModelDocs(request):
     stauts_body = ''
@@ -176,6 +177,31 @@ def delDocMode(request, id):
     return redirect('/Lista_Proj')
 
 
+#--------------------------------------------- Lista de Documentos
+@login_required
+def listDocs(request, id):
+    stauts_body = ''
+
+    #LdProjs = LdProj.objects.all() #.order_by('-doc_name_pattern')
+
+    print('>>>>>>>>', id)
+    LdProjs = LdProj.objects.filter(proj_name_id=id)
+    Employees = Employee.objects.all()
+    Projects = Project.objects.all().order_by('-project_name')
+    DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
+
+    docs_count = len(DocumentModels)
+
+    colab = request.user
+    colaborador = ''
+    photo_colab = ''
+
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+
+    return render(request,'project_control/lista-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'LdProjs':LdProjs, 'docs_count':docs_count, 'colaborador':colaborador, 'photo_colab':photo_colab})
 
 
 

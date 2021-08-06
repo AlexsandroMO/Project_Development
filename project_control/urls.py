@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import home, listaProj, newProj, editProj, preDelProj, delProj, listaModelDocs, editDocMode, delDocMode #, listaDocs
+from .views import home, listaProj, newProj, editProj, preDelProj, delProj, \
+listaModelDocs, editDocMode, delDocMode, \
+listDocs  #, listaDocs
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,5 +17,7 @@ urlpatterns = [
     path('Lista_Model_Docs', listaModelDocs, name='lista-model-docs'),
     path('Edit_Doc_Mode/<int:id>', editDocMode, name='edit-doc-mode'),
     path('Del_Doc_Mode/<int:id>', delDocMode, name='del-doc-mode'),
+    #----List Docs
+    path('List_Docs/<int:id>', listDocs, name='list-docs'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
