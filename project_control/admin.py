@@ -12,7 +12,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 class SubjectAdmin(admin.ModelAdmin):
     fields = ('subject_name',)
-    list_display = ('subject_name', 'created_at','update_at')
+    list_display = ('id','subject_name', 'created_at','update_at')
 
 
 class PageTypeAdmin(admin.ModelAdmin):
@@ -47,7 +47,7 @@ class ActionAdmin(admin.ModelAdmin):
 
 class LdProjAdmin(admin.ModelAdmin):
     fields = ('proj_name', 'subject_name', 'doc_name_pattern','doc_name', 'doc_number','page_type','format_doc')
-    list_display = ('proj_name', 'subject_name', 'doc_name_pattern','doc_name','doc_number','page_type','format_doc','created_at','update_at') 
+    list_display = ('id','proj_name', 'subject_name', 'doc_name_pattern','doc_name','doc_number','page_type','format_doc','created_at','update_at') 
 
 
 class ProjControlAdmin(admin.ModelAdmin):

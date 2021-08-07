@@ -3,12 +3,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from .models import Employee, Project, DocumentModel, LdProj
+from .models import Employee, Project, DocumentModel, LdProj, Subject
 from .forms import ProjectForm, LdProjForm #, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
 from django.contrib import messages
+import numpy as np
+
 
 def home(request):
     stauts_body = 'page-home'
+
     return render(request,'project_control/index.html', {'stauts_body': stauts_body})
 
 
@@ -182,15 +185,28 @@ def delDocMode(request, id):
 def listDocs(request, id):
     stauts_body = ''
 
-    #LdProjs = LdProj.objects.all() #.order_by('-doc_name_pattern')
+    id_proj = id
 
-    print('>>>>>>>>', id)
-    LdProjs = LdProj.objects.filter(proj_name_id=id)
+    LdProjs = LdProj.objects.filter(proj_name_id=id_proj)
     Employees = Employee.objects.all()
-    Projects = Project.objects.all().order_by('-project_name')
-    DocumentModels = DocumentModel.objects.all().order_by('-documment_name')
+    Subjects = Subject.objects.all().order_by('-subject_name')
 
-    docs_count = len(DocumentModels)
+    list_docs, list_id, list_proj, unique = [],[],[],[]
+    for a in LdProjs:
+        list_proj.append(a.proj_name)
+        list_docs.append(a.subject_name)
+        list_id.append(a.subject_name_id)
+
+    unique_list_doc = list(set(list_docs))
+    unique_list_id = list(set(list_id))
+
+    #unique_list = len(np.unique(list_docs))
+    for a in range(0, len(unique_list_doc)):
+        unique.append([unique_list_id[a], unique_list_doc[a]])
+
+    print('>>>>>>', unique_list_id, unique_list_doc)
+ 
+    docs_count = len(unique)
 
     colab = request.user
     colaborador = ''
@@ -201,9 +217,36 @@ def listDocs(request, id):
             colaborador = a.emp_name
             photo_colab = a.photo
 
-    return render(request,'project_control/lista-de-documentos.html', {'stauts_body':stauts_body, 'Projects':Projects, 'Employees':Employees, 'DocumentModels':DocumentModels, 'LdProjs':LdProjs, 'docs_count':docs_count, 'colaborador':colaborador, 'photo_colab':photo_colab})
+    return render(request,'project_control/lista-de-documentos.html', {'stauts_body':stauts_body, 'unique':unique,
+                            'list_proj':list_proj, 'Employees':Employees, 'LdProjs':LdProjs, 'docs_count':docs_count, 'id_proj':id_proj, 'colaborador':colaborador, 
+                            'photo_colab':photo_colab})
 
 
+@login_required
+def listDocsFilter(request, id):
+    stauts_body = ''
+
+    POST = dict(request.POST)
+
+    id_sub = int(POST['action'][0])
+    id_proj = int(POST['_id_proj'][0])
+
+    LdProjs = LdProj.objects.filter(proj_name_id=id_proj).filter(subject_name_id=id_sub)
+    Employees = Employee.objects.all()
+    Subjects = Subject.objects.all().order_by('-subject_name')
+ 
+    docs_count = len(LdProjs)
+
+    colab = request.user
+    colaborador = ''
+    photo_colab = ''
+
+    for a in Employees:
+        if colab == a.user:
+            colaborador = a.emp_name
+            photo_colab = a.photo
+
+    return render(request,'project_control/lista-de-documentos-filter.html', {'stauts_body':stauts_body, 'Subjects':Subjects, 'Employees':Employees, 'LdProjs':LdProjs, 'docs_count':docs_count, 'colaborador':colaborador, 'photo_colab':photo_colab})
 
 
 '''

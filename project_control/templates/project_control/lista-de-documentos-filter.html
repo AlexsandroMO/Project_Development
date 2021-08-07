@@ -7,7 +7,7 @@
 
   <!-- Content -->
   <div id="content" class="">
-    <h1>Lista de Documentos de <strong>{{list_proj.0}}</strong></h1>
+    <h1>Lista de Projetos</h1>
     <div id="content-main">
 
       <ul class="object-tools">
@@ -20,22 +20,7 @@
 
       <div class="module" id="changelist">
         <div class="changelist-form-container">
-          <form action="{% url 'list-docs-filter' 0 %}" method="POST">
-            <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
-            <input type="" name="_id_proj" value="{{id_proj}}" hidden>  
-            <div class="actions">
-                <label>Action:
-                  <select name="action" required>
-                    <option value="" selected>---------</option>
-                    {% for item in unique %}
-                      <option value="{{item.0}}">{{item.1}}</option>
-                    {% endfor %}
-                  </select>
-                </label>
-                  <input type="hidden" name="select_across" value="0" class="select-across">
-                <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
-                <span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>
-              </div>
+
             <div class="results">
               <table id="result_list">
                 <thead>

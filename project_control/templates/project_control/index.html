@@ -16,26 +16,19 @@
 
       <tr class="model-group">
         <th scope="row"><a href="{% url 'lista-proj' %}">Lista de Projetos</a></th>
-        <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
-      </tr>
-      
-      <tr class="model-group">
-        <th scope="row"><a href="{% url 'lista-model-docs' %}">Modelo de Documentos</a></th>
-        <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
-      </tr>
-
-      <tr class="model-group">
-        <th scope="row"><a href="#">Lista de Documentos</a></th>
-        <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="{% url 'new-proj' %}" class="addlink">Add</a></td>
       </tr>
 
       <tr class="model-user">
-        <th scope="row"><a href="/admin/auth/user/">Status do Projeto</a></th>
-        <td><a href="/admin/auth/user/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/auth/user/" class="changelink">Change</a></td>
+        <th scope="row"><a href="#">Status do Projeto</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="#" class="addlink">Add</a></td>
+      </tr>
+
+      <tr class="model-group">
+        <th scope="row"><a href="{% url 'lista-model-docs' %}">Criar Lista de Documentos</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
       </tr>
 
     </table>
@@ -49,21 +42,50 @@
       </caption>
 
       <tr class="model-action">
-        <th scope="row"><a href="/admin/project_control/project/">Novo Projeto</a></th>
-        <td><a href="/admin/project_control/project/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/project_control/project/" class="changelink">Change</a></td>
+        <th scope="row"><a href="{% url 'new-proj' %}">Novo Projeto</a></th>
+        <td><a href="/admin/project_control/project/" class="changelink">Notes</a></td>
       </tr>
 
       <tr class="model-doctype">
-        <th scope="row"><a href="/admin/project_control/doctype/">Tipos de Documentos</a></th>
-        <td><a href="/admin/project_control/doctype/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/project_control/doctype/" class="changelink">Change</a></td>
+        <th scope="row"><a href="admin/project_control/documentmodel/">Tipos de Documentos</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/documentmodel/add/" class="addlink">Add</a></td>
       </tr>
 
       <tr class="model-doctype">
         <th scope="row"><a href="/admin/project_control/subject/">Disciplinas</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
         <td><a href="/admin/project_control/subject/add/" class="addlink">Add</a></td>
-        <td><a href="/admin/project_control/subject/" class="changelink">Change</a></td>
+      </tr>
+
+      <tr class="model-doctype">
+        <th scope="row"><a href="/admin/project_control/action/">Ações</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/action/add/" class="addlink">Add</a></td>
+      </tr>
+
+      <tr class="model-doctype">
+        <th scope="row"><a href="/admin/project_control/pagetype/">Padrões de Folha</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/pagetype/add/" class="addlink">Add</a></td>
+      </tr>
+
+      <tr class="model-doctype">
+        <th scope="row"><a href="/admin/project_control/pageformat/">Formato de Documento</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/pageformat/add/" class="addlink">Add</a></td>
+      </tr>
+
+      <tr class="model-doctype">
+        <th scope="row"><a href="/admin/project_control/statusdoc/">Status Documentos</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/statusdoc/add/" class="addlink">Add</a></td>
+      </tr>
+
+      <tr class="model-doctype">
+        <th scope="row"><a href="/admin/project_control/employee/">Colaboradores</a></th>
+        <td><a href="#" class="changelink">Notes</a></td>
+        <td><a href="/admin/project_control/employee/add/" class="addlink">Add</a></td>
       </tr>
       
     </table>

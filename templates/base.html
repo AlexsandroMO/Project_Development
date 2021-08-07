@@ -9,10 +9,12 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="robots" content="NONE,NOARCHIVE">
   <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
-  <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css"> -->
   <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
   <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
   <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
 
 </head>
 
@@ -56,52 +58,82 @@
     <div class="app-auth module">
       <table>
         <caption>
-          <a href="/admin/auth/" class="section" title="Projects Currently in Progress">PROJETOS EM ANDAMENTO</a>
+          <a href="/admin/auth/" class="section"
+          title="Projects Currently in Progress">PROJETOS EM ANDAMENTO</a>
         </caption>
-
+  
         <tr class="model-group">
           <th scope="row"><a href="{% url 'lista-proj' %}">Lista de Projetos</a></th>
-          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="{% url 'new-proj' %}" class="addlink">Add</a></td>
         </tr>
-
-        <tr class="model-group">
-          <th scope="row"><a href="{% url 'lista-model-docs' %}">Modelo de Documentos</a></th>
-          <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/auth/group/" class="changelink">Change</a></td>
-        </tr>
-
+  
         <tr class="model-user">
-          <th scope="row"><a href="/admin/auth/user/">Status do Projeto</a></th>
-          <td><a href="/admin/auth/user/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/auth/user/" class="changelink">Change</a></td>
+          <th scope="row"><a href="#">Status do Projeto</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="#" class="addlink">Add</a></td>
         </tr>
+  
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'lista-model-docs' %}">Criar Lista de Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+        </tr>
+  
       </table>
     </div>
-
+  
     <div class="app-project_control module">
       <table>
         <caption>
           <a href="/admin/project_control/" class="section"
             title="Models in the Project_Control application">CONFIGURAÇÃO DE PROJETOS</a>
         </caption>
-
+  
         <tr class="model-action">
-          <th scope="row"><a href="/admin/project_control/project/">Novo Projeto</a></th>
-          <td><a href="/admin/project_control/project/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/project_control/project/" class="changelink">Change</a></td>
+          <th scope="row"><a href="{% url 'new-proj' %}">Novo Projeto</a></th>
+          <td><a href="/admin/project_control/project/" class="changelink">Notes</a></td>
         </tr>
-
+  
         <tr class="model-doctype">
-          <th scope="row"><a href="/admin/project_control/doctype/">Tipos de Documentos</a></th>
-          <td><a href="/admin/project_control/doctype/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/project_control/doctype/" class="changelink">Change</a></td>
+          <th scope="row"><a href="admin/project_control/documentmodel/">Tipos de Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/documentmodel/add/" class="addlink">Add</a></td>
         </tr>
-
+  
         <tr class="model-doctype">
           <th scope="row"><a href="/admin/project_control/subject/">Disciplinas</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
           <td><a href="/admin/project_control/subject/add/" class="addlink">Add</a></td>
-          <td><a href="/admin/project_control/subject/" class="changelink">Change</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/action/">Ações</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/action/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/pagetype/">Padrões de Folha</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/pagetype/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/pageformat/">Formato de Documento</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/pageformat/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/statusdoc/">Status Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/statusdoc/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/employee/">Colaboradores</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/employee/add/" class="addlink">Add</a></td>
         </tr>
 
       </table>
@@ -128,7 +160,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 -->
 
-<script src="/static/admin/js/nav_sidebar.js" defer></script>
+<!-- <script src="/static/admin/js/nav_sidebar.js" defer></script> -->
 <script src="/admin/jsi18n/"></script>
 <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
 <script src="/static/admin/js/jquery.init.js"></script>
@@ -143,6 +175,7 @@
 
 <script src="{% static 'js/scripts.js' %}"></script>
 <script src="{% static 'js/script-coin.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 
 </html>
