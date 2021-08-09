@@ -6,13 +6,32 @@ from django.http import HttpResponse
 from .models import Employee, Project, DocumentModel, LdProj, Subject
 from .forms import ProjectForm, LdProjForm #, SubjectForm, PageTypeForm, DocTypeForm, PageformatForm, DocumentModelForm, EmployeeForm, StatusDocForm, ActionForm #, LdProjForm, CotationForm
 from django.contrib import messages
-import numpy as np
+#import numpy as np
+import DB_Access as db_access
+from datetime import datetime
 
 
 def home(request):
+    data_atual = datetime.today()
+    data_atual = datetime.strptime(str(data_atual)[:10], '%Y-%m-%d').date()
+
     stauts_body = 'page-home'
 
-    return render(request,'project_control/index.html', {'stauts_body': stauts_body})
+    list_log = db_access.read_sql_read()
+    list_content = db_access.read_sql_read2()
+
+    log_django = []
+    for a in range(len(list_log['object_repr'])):
+        for b in range(len(list_content)):
+            if list_content['id'][b] == list_log['content_type_id'][a]:
+                choised = list_content['model'][b]
+        read_date = datetime.strptime(str(list_log['action_time'][a])[:10], '%Y-%m-%d').date()
+
+        if data_atual == read_date:
+            log_django.append([list_log['object_repr'][a], list_log['object_id'][a], choised, read_date])
+
+
+    return render(request,'project_control/index.html', {'stauts_body': stauts_body, 'log_django':log_django})
 
 
 #--------------------------------------------- Projects List
@@ -43,7 +62,7 @@ def listaProj(request):
 @login_required
 def newProj(request):
 
-    Projects = Project.objects.all()
+    #Projects = Project.objects.all()
 
     if request.method == 'POST':
         form = ProjectForm(request.POST)

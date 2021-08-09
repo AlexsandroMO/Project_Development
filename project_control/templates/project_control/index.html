@@ -98,71 +98,19 @@
     
   </div>
 </div>
-
+ 
 <div id="content-related">
     <div class="module" id="recent-actions-module">
       <h2>Recent actions</h2>
       <h3>My actions</h3>
       <ul class="actionlist">
-
+        {% for item in log_django %}
         <li class="addlink">
-          <a href="/admin/project_control/documentmodel/6/change/">Diagrama de Interligação</a>
+          <a href="/admin/project_control/{{item.2}}/{{item.1}}/change/">{{item.0}}</a>
           <br>
-          <span class="mini quiet">Document model</span>
+          <span class="mini quiet">{{item.2}}</span>
         </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/documentmodel/5/change/">Planta de Locação</a>
-          <br>
-          <span class="mini quiet">Document model</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/doctype/10/change/">DE</a>
-          <br>
-          <span class="mini quiet">Doc type</span>
-        </li>
-
-        <li class="deletelink">
-          DE
-          <br>
-          <span class="mini quiet">Pageformat</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/documentmodel/4/change/">Planta de Locação</a>
-          <br>
-          <span class="mini quiet">Document model</span>
-        </li>
-        <li class="addlink">
-          <a href="/admin/project_control/pageformat/4/change/">DE</a>
-          <br>
-          <span class="mini quiet">Pageformat</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/documentmodel/3/change/">Fluxograma de Engenharia</a>
-          <br>
-          <span class="mini quiet">Document model</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/doctype/9/change/">FG</a>
-          <br>
-          <span class="mini quiet">Doc type</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/documentmodel/2/change/">Critério de Projeto</a>
-          <br>
-          <span class="mini quiet">Document model</span>
-        </li>
-
-        <li class="addlink">
-          <a href="/admin/project_control/documentmodel/1/change/">Memorial Descritivo</a>
-          <br>
-          <span class="mini quiet">Document model</span>
-        </li>
+        {% endfor %}
 
       </ul>
 
