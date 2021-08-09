@@ -46,8 +46,8 @@ class ActionAdmin(admin.ModelAdmin):
 
 
 class LdProjAdmin(admin.ModelAdmin):
-    fields = ('proj_name', 'subject_name', 'doc_name_pattern','doc_name', 'doc_number','page_type','format_doc')
-    list_display = ('id','proj_name', 'subject_name', 'doc_name_pattern','doc_name','doc_number','page_type','format_doc','created_at','update_at') 
+    fields = ('proj_name', 'subject_name', 'doc_name_pattern','doc_name', 'doc_number','page_type','format_doc','type_doc')
+    list_display = ('id','proj_name', 'subject_name', 'doc_name_pattern','doc_name','doc_number','page_type','format_doc','type_doc','created_at','update_at') 
 
 
 class ProjControlAdmin(admin.ModelAdmin):

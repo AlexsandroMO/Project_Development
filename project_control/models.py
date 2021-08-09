@@ -81,7 +81,7 @@ class DocumentModel(models.Model): #Modelo de Documento
 
 class StatusDoc(models.Model): #Status do Projeto
 
-    doc_status = models.CharField(max_length=50)
+    doc_status = models.CharField(max_length=50, verbose_name='STATUS')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
   
@@ -108,6 +108,7 @@ class LdProj(models.Model): #Tabela = Lista de Documentos LD
     doc_number = models.CharField(max_length=255, blank=True, null=True, verbose_name='NÚMERO DO DOCUMENTO')
     page_type = models.ForeignKey(PageType, on_delete=models.CASCADE, verbose_name='TIPO DE FOLHA')
     format_doc = models.ForeignKey(Pageformat, on_delete=models.CASCADE, verbose_name='FORMATO')
+    type_doc = models.ForeignKey(DocType, on_delete=models.CASCADE, verbose_name='TIPO DE DOCUMENTO')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
   
